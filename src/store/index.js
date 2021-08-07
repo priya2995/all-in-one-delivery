@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { api } from "@/services/services.js";
 import router from "@/router/index";
-
 import createPersistedState from "vuex-persistedstate";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -37,7 +37,6 @@ export default new Vuex.Store({
   },
   actions: {
     async signInUser({ commit }, payload) {
-      console.log(payload, " :: signInUser")
       const res = await api.login({
         userId: payload.userId
       });
@@ -57,7 +56,6 @@ export default new Vuex.Store({
       }
     },
     async createPost({commit},payload) {
-      console.log(payload, " : createPost")
       const res = await api.createPost({
         post:payload
       });
@@ -70,7 +68,6 @@ export default new Vuex.Store({
     logout({commit}){
       commit("setUser",null)
       commit("setPosts", []);
-
       router.push("/");
     }
   },

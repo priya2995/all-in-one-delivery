@@ -28,7 +28,7 @@
       <v-list-item-group
         multiple
       >
-        <template v-for="(post, index) in posts">
+        <template v-for="(post, index) in postList">
           <v-list-item :key="post.title">
             <template>
               <v-list-item-content>
@@ -36,6 +36,9 @@
 
                 <v-list-item-subtitle v-text="post.body"></v-list-item-subtitle>
               </v-list-item-content>
+              <v-list-item-action>
+                  <a href="#">Comment</a>
+              </v-list-item-action>
             </template>
           </v-list-item>
 
@@ -65,14 +68,13 @@ export default {
     }
    },
 mounted() {
-    if(this.postList && this.postList.length) {
-        this.posts = this.postList
-        return
+    if(this.postList && this.postList.length == 0) {
+        if(this.$store.state.user && this.$store.state.status.loggingIn) {
+            this.getPosts({userId:this.$store.state.user.id})
+            this.posts = this.$store.state.posts | this.postList
+        }
     }
-    if(this.$store.state.user && this.$store.state.status.loggingIn) {
-        this.getPosts({userId:this.$store.state.user.id})
-        this.posts = this.$store.state.posts
-    }
+   
 },
 computed: {
       ...mapGetters(["postList"])

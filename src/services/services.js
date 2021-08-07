@@ -12,7 +12,6 @@ export const api = {
         return res.data;
       }),
       createPost:  (async payload => {
-          console.log(payload.post)
         let url = `${baseURL}posts/`
         // const options = {
         //     method: 'POST',

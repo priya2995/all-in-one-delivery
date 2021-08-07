@@ -30,5 +30,3 @@ Perform practical in Vue.js only.. Upload practical in Github and share the Gith
 
 JSONPlaceholder - Free Fake REST API
 https://jsonplaceholder.typicode.com
-
-In case you have any query, contact on  9662361347, Purvi.

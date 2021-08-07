@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+import store from "../store/index";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +23,7 @@ const routes = [
   {
     path: '/posts',
     name: 'Posts',
+    
     component: () => import(/* webpackChunkName: "about" */ '@/views/Posts.vue')
   }
 ]
@@ -30,5 +33,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Home' && !store.state.status.loggingIn) next({ name: 'Home' })
+  else next()
+})
 export default router
